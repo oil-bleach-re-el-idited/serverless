@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Configure",
+            "type": "shell",
+            "command": "cmake --preset ${env:ATS_VSCODE_PRESET}",
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cmake --build --preset ${env:ATS_VSCODE_PRESET}",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Install",
+            "type": "shell",
+            "command": "cmake --install ${workspaceFolder}/${env:ATS_VSCODE_BUILDDIR}",
+            "problemMatcher": [
+                "$gcc"
+            ],
+        },
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "cmake --build --preset ${env:ATS_VSCODE_PRESET} --target test",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Full Build",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Configure", "Build", "Test", "Install"],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Dump Enviroment Variables",
+            "command": "env",
+            "problemMatcher": []
+        }
+    ]
+}

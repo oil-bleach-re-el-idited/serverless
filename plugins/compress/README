@@ -1,0 +1,27 @@
+What this plugin does:
+=====================
+
+This plugin compresses responses, via gzip or brotli, whichever is applicable
+it can compress origin responses as well as cached responses
+
+installation:
+make && sudo make install
+
+After installation, add a line to plugin.config:
+
+    compress.so
+
+In this case, the plugin will use a default behaviour:
+
+- use caching
+- compress text/* for every origin
+- don't hide accept encoding from origin servers (for an offloading reverse proxy)
+- no urls are disallowed from compression
+
+Alternatively, a configuration can also be specified:
+compress.so <path-to-config>/sample.compress.config
+
+After modifying plugin.config, restart traffic server (sudo traffic_ctl server restart)
+the configuration is re-read when a management update is given (sudo traffic_ctl config reload)
+
+See sample.config.compress for an example configuration and the options that are available

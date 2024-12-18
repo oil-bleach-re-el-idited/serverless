@@ -1,0 +1,64 @@
+# Documentation https://cwiki.apache.org/confluence/display/INFRA/git+-+.asf.yaml+features
+notifications:
+  commits: commits@trafficserver.apache.org
+  issues: issues@trafficserver.apache.org
+  pullrequests: github@trafficserver.apache.org
+github:
+  description: "Apache Traffic Server™ is a fast, scalable and extensible HTTP/1.1 and HTTP/2 compliant caching proxy server."
+  homepage: https://trafficserver.apache.org/
+  labels:
+    - proxy
+    - cdn
+    - cache
+    - apache
+    - http2
+    - http3
+    - quic
+    - forwardproxy
+    - reverseproxy
+    - hacktoberfest
+  features:
+    # Enable wiki for documentation
+    wiki: true
+    # Enable issue management
+    issues: true
+    # Enable projects for project management boards
+    projects: true
+  enabled_merge_buttons:
+    # Enable squash button:
+    squash: true
+    # Disable rebase button:
+    rebase: false
+    # Disable merge button:
+    merge: false
+  collaborators:
+    - mtorluemke
+    - c-taylor
+    - etapia
+    - lzx404243
+    - phongn
+    - jasmine-nahrain
+  protected_branches:
+    master:
+      required_status_checks:
+        # strict means "Require branches to be up to date before merging"
+        strict: false
+        contexts:
+          - AuTest 0of4
+          - AuTest 1of4
+          - AuTest 2of4
+          - AuTest 3of4
+          - Rocky
+          - CentOS
+          - Clang-Analyzer
+          - Format
+          - Debian
+          - Docs
+          - Fedora
+          - RAT
+          - Ubuntu
+          - OSX
+          - FreeBSD
+      required_pull_request_reviews:
+        dismiss_stale_reviews: true
+        required_approving_review_count: 1
